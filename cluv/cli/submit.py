@@ -72,6 +72,7 @@ async def submit(
     sbatch_args: list[str],
     program_args: list[str],
     autocommit: bool = False,
+    sync_datasets: bool = True,
     _skip_sync: bool = False,
 ) -> Job | None:
     """Submit a SLURM job on a remote cluster.
@@ -142,7 +143,7 @@ async def submit(
         if _skip_sync:
             remote = await Remote.connect(hostname=cluster)
         else:
-            remote = (await sync(clusters=[cluster]))[0]
+            remote = (await sync(clusters=[cluster], sync_datasets=sync_datasets))[0]
     else:
         # Submitting to the current cluster. The sbatch command will run locally.
         remote = None

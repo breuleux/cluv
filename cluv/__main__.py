@@ -132,6 +132,13 @@ def add_submit_args(subparsers: Subparsers):
         help="Create a local commit with tracked changes before submitting the job.",
     )
     submit_parser.add_argument(
+        "--sync-datasets",
+        dest="sync_datasets",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Push datasets from data_source to each cluster. Requires data_source in config.",
+    )
+    submit_parser.add_argument(
         "cluster",
         metavar="<cluster>",
         help=(
