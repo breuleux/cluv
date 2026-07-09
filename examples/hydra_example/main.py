@@ -79,6 +79,7 @@ def main(config_dict: DictConfig):
 
     wandb_run = wandb.init(
         project="cluv-example",
+        mode="offline",
         name=run_id,
         id=run_id,
         dir=run_dir.parent if run_dir else None,
